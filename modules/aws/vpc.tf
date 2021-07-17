@@ -1,5 +1,6 @@
 provider "aws" {
-  region = var.region
+  region = var.cluster.region
+  profile = var.cluster.profile
 }
 
 # Initialize availability zone data from AWS
@@ -11,7 +12,9 @@ resource "aws_vpc" "vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "${var.cluster_name}-vpc"
+    ClusterName = var.cluster.name
+    Name = "mks-vpc"
+    mks = "true"
   }
 }
 
@@ -20,7 +23,9 @@ resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
-    Name = "${var.cluster_name}-internet-gateway"
+    ClusterName = var.cluster.name
+    Name = "mks-internet-gateway"
+    mks = "true"
   }
 }
 
@@ -33,7 +38,9 @@ resource "aws_subnet" "public_subnet" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "${var.cluster_name}-public-subnet"
+    ClusterName = var.cluster.name
+    Name = "mks-public-subnet"
+    mks = "true"
   }
 }
 
@@ -46,7 +53,9 @@ resource "aws_subnet" "private_subnet" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name = "${var.cluster_name}-private-subnet"
+    ClusterName = var.cluster.name
+    Name = "mks-private-subnet"
+    mks = "true"
   }
 }
 
@@ -60,7 +69,9 @@ resource "aws_route_table" "route_table_public" {
   }
 
   tags = {
-    Name = "${var.cluster_name}-public-route-table"
+    ClusterName = var.cluster.name
+    Name = "mks-public-route-table"
+    mks = "true"
   }
 }
 
@@ -92,7 +103,9 @@ resource "aws_route_table" "route_table_private" {
   }
 
   tags = {
-    Name = "${var.cluster_name}-private-route-table"
+    ClusterName = var.cluster.name
+    Name = "mks-private-route-table"
+    mks = "true"
   }
 }
 
