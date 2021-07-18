@@ -2,7 +2,7 @@ module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = var.cluster.name
   cluster_version = var.cluster.kubernetes_version
-  subnets         = aws_vpc.vpc.private_subnet
+  subnets         = aws_subnet.private_subnet.*.id
 
   tags = {
     ClusterName = var.cluster.name

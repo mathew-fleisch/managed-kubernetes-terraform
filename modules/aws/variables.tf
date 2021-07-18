@@ -1,16 +1,4 @@
-# variable "cluster_name" {
-#   type = string
-# }
-# variable "profile" {
-#   type = string
-# }
-# variable "region" {
-#   type = string
-# }
-# variable "kubernetes_version" {
-#   type = string
-#   default = "1.20"
-# }
+# worker_additional_security_group_ids = list(string)
 
 variable "cluster" {
     type = object({
