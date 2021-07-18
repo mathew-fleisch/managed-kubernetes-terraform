@@ -2,14 +2,14 @@ module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = var.cluster.name
   cluster_version = var.cluster.kubernetes_version
-  subnets         = aws_vpc.vpc.private_subnets
+  subnets         = aws_vpc.vpc.private_subnet
 
   tags = {
     ClusterName = var.cluster.name
     mks = "true"    
   }
 
-  vpc_id = aws_vpc.vpc.vpc_id
+  vpc_id = aws_vpc.vpc.id
 
   workers_group_defaults = {
     root_volume_type = "gp2"
