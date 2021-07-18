@@ -5,6 +5,7 @@ provider "aws" {
 
 # Initialize availability zone data from AWS
 data "aws_availability_zones" "available" {
+    # List of availability zones that do not support eks
     exclude_names = ["us-east-1e"]
 }
 

@@ -13,6 +13,8 @@ variable "cluster" {
               asg_min_size          = number
               asg_max_size          = number
               asg_desired_capacity  = number
+              public_ip             = bool
+              worker_additional_security_group_ids = list(string)
           })
         )
     })
